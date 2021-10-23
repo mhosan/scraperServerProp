@@ -2,11 +2,17 @@ const express = require('express');         //aca se usa express no para crear u
                                             //rutas del servidor
 const router = express.Router();
 const preciosCtrl = require('../controllers/controlador'); //se requiere el controlador del crud
+const preciosModelo = require('../models/precios');
 
-router.get('/', preciosCtrl.getPrecios);  //esto es que hago cuando me pidan la ruta raiz del servidor, como
+//router.get('/', preciosCtrl.getPrecios);  //esto es que hago cuando me pidan la ruta raiz del servidor, como
                                             //respondo a eso. Ahora estoy usando un controlador, pero tambien 
                                             //se puede poner una arrow function ahi, despues de la coma de la ruta,
                                             //como segundo parametro.
+router.get('/', async (req, res) => {
+    const caca = await preciosModelo.find({'supermercado' : "Dia"}); 
+    res.json(caca);
+}
+); 
 
 router.post('/', preciosCtrl.createItem);
 
