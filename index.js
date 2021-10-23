@@ -39,9 +39,9 @@ app.use(express.json());                    //que el servidor entienda los datos
 app.use(cors());                            //es un midleware (una funcion)
 
 //routes
-//app.use('/api/usuarios',require('./routes/rutas.js'));  // el primer parametro es la ruta por default, o sea que  
+app.use('/api/precios',require('./routes/rutas.js'));  // el primer parametro es la ruta por default, o sea que  
                                                         // despues de localhost (o la url del server) viene 
-                                                        // "/api/usuarios" como prefijo. Se agrega a la ruta '/'
+                                                        // "/api/precios" como prefijo. Se agrega a la ruta '/'
 
 //start el server
 app.listen(app.get('port'), () => {
