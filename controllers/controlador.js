@@ -61,7 +61,7 @@ preciosControlador.editPrecio = async (req, res) =>{
 };
 
 //delete
-preciosControlador.deleteprecio = async (req, res) =>{
+preciosControlador.deletePrecio = async (req, res) =>{
     await precioModelo.findByIdAndRemove(req.params.id);//usamos async / await porque puede tomar algo de tiempo la respuesta
     res.json({status : 'precio borrado Ok'});
 };

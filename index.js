@@ -21,7 +21,7 @@ const express = require('express');
 const morgan = require('morgan');           //para ver mesajes en el servidor
 const cors = require('cors');
 const app = express();
-//const { mongoose } = require('./database'); //importar desde el archivo con la conexion a la bd solamente la conexion
+const { mongoose } = require('./database'); //importar desde el archivo con la conexion a la bd solamente la conexion
                                             //no se esta importando todo el archivo sino solo la conexion. Al 
                                             //importar se ejecuta.
 //settings
