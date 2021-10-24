@@ -1,35 +1,32 @@
+const express = require('express');
+const router = express.Router();
 const supermercados = require('../models/precios');
 const preciosControlador = {};                     //creo un objeto que luego voy a exportar
 
 //get
-preciosControlador.getPrecios = async (req, res) => { // Hay que esperar hasta que llegue la respuesta, 
-    const caca = await supermercados.find();        // esto se podria resolver con un callback, o con una
-    res.json(caca);
-};
-
-// Si fuera con un callback: 
-// ..= (req, res) => {
-//      precioModelo.find( function(resultado, error) {
-//          })
-//      }
-// Si fuera con promesas:
-// ..= (req, res) => {
-//      precioModelo.find
-//          .then(()=>{ })
-//          .catch(()=>{ })
-//      }
-// async / await es un concepto nuevo en javascript.
-// si algo va a tomar tiempo, se agrega el "async" antes de la 
-// funcion y en el resultado que va a demorar se pone que lo
-// espere con "await"
+preciosControlador.getPrecios = function() {
+    return new Promise((resolve, reject) => {
+        supermercados.find({'supermercado': 'Vea'}).exec().then(data => {
+            resolve({'status': 200, 'message':'get all data', 'data': data});
+        }).catch(err => {
+            reject({'status': 404, 'message':'err:-'+err});
+        })
+    })
+}
 
 //get con id
-preciosControlador.getPrecios = async (req, res) => {
-    const precio = await supermercados.findById(req.params.id);
-    res.json({                                          //en "req.params.id" se recuperan los parametros enviados
-        precio
-    });
+/*
+this.getSingle = function(id) {
+        return new Promise((resolve, reject) => {
+            UserSchema.find({_id: id}).exec().then(data => {
+                resolve({'status': 200, 'message':'get single data', 'data': data});
+            }).catch(err => {
+                reject({'status': 404, 'message':'err:-'+err});
+            })
+        })
+    }
 };
+*/
 
 //post
 preciosControlador.createItem = async (req, res) => {
@@ -48,6 +45,15 @@ preciosControlador.createItem = async (req, res) => {
 }
 
 //put
+/*this.update = function(id, updateData) {
+    return new Promise((resolve, reject) => {
+        UserSchema.update({_id: id}, updateData).then(() => {
+            resolve({'status': 200, 'message':'update user'});
+        }).catch(err => {
+            reject({'status': 404, 'message':'err:-'+err});
+        })
+    })
+}*/
 preciosControlador.editPrecio = async (req, res) => {
     const { id } = req.params;                          //quiero solo el id y guardarlo en una constante
     const precio = {
@@ -63,6 +69,15 @@ preciosControlador.editPrecio = async (req, res) => {
 };
 
 //delete
+/*this.delete = function(id) {
+    return new Promise((resolve, reject) => {
+        UserSchema.remove({_id: id}).then(() => {
+            resolve({'status': 200, 'message':'delete user'});
+        }).catch(err => {
+            reject({'status': 404, 'message':'err:-'+err});
+        })
+    })
+}*/
 preciosControlador.deletePrecio = async (req, res) => {
     await supermercados.findByIdAndRemove(req.params.id);//usamos async / await porque puede tomar algo de tiempo la respuesta
     res.json({ status: 'precio borrado Ok' });
