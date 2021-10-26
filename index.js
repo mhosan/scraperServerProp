@@ -16,6 +16,8 @@ servidor le respondió con un codigo "200", la respuesta tardó 57,322 milisegun
 archivo de respuesta es de 131 b.
 Para instalar Morgan: 'npm install morgan'
 
+Para el deploy, instalar el paquete dotenv para leer variables de entorno: 'npm install dotenv'
+
 */
 const express = require('express');
 const morgan = require('morgan');           //para ver mesajes en el servidor
