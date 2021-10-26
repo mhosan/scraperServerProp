@@ -6,7 +6,8 @@ const preciosControlador = {};                     //creo un objeto que luego vo
 //get
 preciosControlador.getPrecios = function() {
     return new Promise((resolve, reject) => {
-        supermercados.find({}).select("-_id").limit(300).exec()
+        //supermercados.find({}).select("-_id").limit(300).exec()
+        supermercados.find({}).exec()
         .then(data => {
             resolve({'status': 200, 'message':'get all data', 'data': data});
         }).catch(err => {
