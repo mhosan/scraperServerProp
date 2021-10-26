@@ -15,6 +15,7 @@ esto quiere decir que el navegador realizó un GET al servidor, a la url /api/us
 servidor le respondió con un codigo "200", la respuesta tardó 57,322 milisegundos y el tamaño del
 archivo de respuesta es de 131 b.
 Para instalar Morgan: 'npm install morgan'
+El puto morgan da error.
 
 Para el deploy, instalar el paquete dotenv para leer variables de entorno: 'npm install dotenv'
 
