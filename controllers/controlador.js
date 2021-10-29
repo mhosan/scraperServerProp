@@ -3,18 +3,29 @@ const router = express.Router();
 const supermercados = require('../models/precios');
 const preciosControlador = {};                     //creo un objeto que luego voy a exportar
 
-//get
-preciosControlador.getPrecios = function() {
+//get sin parametros:
+preciosControlador.getPrecios = function () {
     return new Promise((resolve, reject) => {
-        //supermercados.find({}).select("-_id").limit(300).exec()
-        supermercados.find({}).exec()
-        .then(data => {
-            resolve({'status': 200, 'message':'get all data', 'data': data});
-        }).catch(err => {
-            reject({'status': 404, 'message':'err:-'+err});
-        })
+        const totalRegistrosMostrar = 350;
+        supermercados.count().exec()
+            .then(count => {
+                const totalSkip = count - totalRegistrosMostrar;
+                //supermercados.find({}).select("-_id").limit(300).exec()
+                //supermercados.find({}).exec()
+                supermercados.find().skip(totalSkip).exec()
+                .then(data => {
+                    resolve({ 'status': 200, 'message': 'get last data', 'data': data });
+                })
+                .catch(err =>{
+                    reject({ 'status': 404, 'message': 'err:-' + err });
+                })
+            })
+            .catch(err => {
+                reject({'status': 404, 'message':'err:-'+err});
+            })
     })
 }
+
 
 //get con id
 /*
