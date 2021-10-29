@@ -39,6 +39,19 @@ preciosControlador.getTotalRegistros = function () {
     });
 }
 
+//get de un solo prodcto:
+preciosControlador.getProducto = function (producto) {
+    return new Promise((resolve, reject) => {
+        supermercados.find({ descrip : {$regex: new RegExp(producto, "ig")} }).exec()
+            .then(data => {
+                resolve({ 'status': 200, 'message': 'get producto', 'data': data });
+            })
+            .catch(err => {
+                reject({ 'status': 404, 'message': 'err:-' + err });
+            })
+    });
+}
+
 //get con id
 /*
 this.getSingle = function(id) {

@@ -14,14 +14,23 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/:total',(req, res) => { 
+router.get('/:total', (req, res) => {
     preciosCtrl.getTotalRegistros()
-    .then(total => {
-        res.json(total);
-    })
-    .catch(err => {
-        res.json(err);
-    })
+        .then(total => {
+            res.json(total);
+        })
+        .catch(err => {
+            res.json(err);
+        })
+});
+router.get('/filtrar/:producto', (req, res) => {
+    preciosCtrl.getProducto(req.params.producto)
+        .then(producto => {
+            res.json(producto);
+        })
+        .catch(err => {
+            res.json(err);
+        })
 });
 //router.get('/:id', preciosCtrl.getPrecios);//esto es /id, ojo, no es un parametro de la forma ?id=9849389 sino 
 //que es un parametro que en node se define con dos puntos, pero en
