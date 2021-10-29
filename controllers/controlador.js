@@ -26,6 +26,18 @@ preciosControlador.getPrecios = function () {
     })
 }
 
+//get total de registros:
+preciosControlador.getTotalRegistros = function () {
+    return new Promise((resolve, reject) => {
+        supermercados.count().exec()
+            .then(count => {
+                resolve({ 'status': 200, 'message': 'get total registros', 'data': count });
+            })
+            .catch(err => {
+                reject({ 'status': 404, 'message': 'err:-' + err });
+            })
+    });
+}
 
 //get con id
 /*
@@ -42,6 +54,7 @@ this.getSingle = function(id) {
 */
 
 //post
+/*
 preciosControlador.createItem = async (req, res) => {
     //console.log(req.body);
     const item = new supermercados({
@@ -55,7 +68,7 @@ preciosControlador.createItem = async (req, res) => {
     res.json({
         'status': 'Nuevo item guardado Ok'
     });
-}
+}*/
 
 //put
 /*this.update = function(id, updateData) {
@@ -67,6 +80,8 @@ preciosControlador.createItem = async (req, res) => {
         })
     })
 }*/
+
+/*
 preciosControlador.editPrecio = async (req, res) => {
     const { id } = req.params;                          //quiero solo el id y guardarlo en una constante
     const precio = {
@@ -79,7 +94,7 @@ preciosControlador.editPrecio = async (req, res) => {
     //$set es un metodo de mongodb para actualizar datos. Y el new:true es
     //por si el dato no existe, por lo tanto que si no existe, lo cree.
     res.json({ status: 'precio actualizado Ok' });
-};
+};*/
 
 //delete
 /*this.delete = function(id) {
@@ -91,10 +106,12 @@ preciosControlador.editPrecio = async (req, res) => {
         })
     })
 }*/
+
+/*
 preciosControlador.deletePrecio = async (req, res) => {
     await supermercados.findByIdAndRemove(req.params.id);//usamos async / await porque puede tomar algo de tiempo la respuesta
     res.json({ status: 'precio borrado Ok' });
 };
-
+*/
 
 module.exports = preciosControlador;

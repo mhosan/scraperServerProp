@@ -12,7 +12,20 @@ router.get('/', (req, res) => {
         .catch(err => {
             res.json(err);
         })
-    });
+});
+
+router.get('/:total',(req, res) => { 
+    preciosCtrl.getTotalRegistros()
+    .then(total => {
+        res.json(total);
+    })
+    .catch(err => {
+        res.json(err);
+    })
+});
+//router.get('/:id', preciosCtrl.getPrecios);//esto es /id, ojo, no es un parametro de la forma ?id=9849389 sino 
+//que es un parametro que en node se define con dos puntos, pero en
+//la url que llega al server viene despues de un "/"
 
 //@route POST /courses
 //Adds a new course
@@ -28,7 +41,7 @@ router.get('/', (req, res) => {
 //    newCourse.save()
 //        .then(course => res.json(course));
 //});
-router.post('/', preciosCtrl.createItem);
+//router.post('/', preciosCtrl.createItem);
 
 //@route GET /course
 //Gets a particular course
@@ -37,11 +50,8 @@ router.post('/', preciosCtrl.createItem);
 //    Course.findById(req.params.id)
 //        .then(course => res.json(course));
 //});
-router.get('/:id', preciosCtrl.getPrecios);//esto es /id, ojo, no es un parametro de la forma ?id=9849389 sino 
-//que es un parametro que en node se define con dos puntos, pero en
-//la url que llega al server viene despues de un "/"
 
-router.put('/:id', preciosCtrl.editPrecio);
+//router.put('/:id', preciosCtrl.editPrecio);
 
 //@route DELETE /courses
 //Deletes a course
@@ -51,7 +61,7 @@ router.put('/:id', preciosCtrl.editPrecio);
 //        .then(course => course.remove() . then(() => res.json({success:true})))
 //        .catch(err => res.status(404).json({success:false}));
 //});
-router.delete('/:id', preciosCtrl.deletePrecio);
+//router.delete('/:id', preciosCtrl.deletePrecio);
 
 
 module.exports = router;
