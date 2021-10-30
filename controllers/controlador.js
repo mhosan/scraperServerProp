@@ -6,7 +6,7 @@ const preciosControlador = {};                     //creo un objeto que luego vo
 //get sin parametros:
 preciosControlador.getPrecios = function () {
     return new Promise((resolve, reject) => {
-        const totalRegistrosMostrar = 350;
+        const totalRegistrosMostrar = 200;
         supermercados.count().exec()
             .then(count => {
                 const totalSkip = count - totalRegistrosMostrar;
