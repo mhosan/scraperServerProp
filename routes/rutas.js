@@ -32,13 +32,8 @@ router.get('/filtrar/:producto', (req, res) => {
             res.json(err);
         })
 });
-//router.get('/:id', preciosCtrl.getPrecios);//esto es /id, ojo, no es un parametro de la forma ?id=9849389 sino 
-//que es un parametro que en node se define con dos puntos, pero en
-//la url que llega al server viene despues de un "/"
 
-//@route POST /courses
-//Adds a new course
-//@access Public
+//POST agregar un nuevo registro
 //router.post('/add-course', (req,res) => {
 //    const newCourse = new Course({
 //        name: req.body.name,
@@ -51,16 +46,6 @@ router.get('/filtrar/:producto', (req, res) => {
 //        .then(course => res.json(course));
 //});
 //router.post('/', preciosCtrl.createItem);
-
-//@route GET /course
-//Gets a particular course
-//@access Public
-//router.get('/get-course/:id', (req,res) => {
-//    Course.findById(req.params.id)
-//        .then(course => res.json(course));
-//});
-
-//router.put('/:id', preciosCtrl.editPrecio);
 
 //@route DELETE /courses
 //Deletes a course
