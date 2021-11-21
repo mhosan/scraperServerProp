@@ -4,6 +4,17 @@ const router = express.Router();
 const preciosCtrl = require('../controllers/controlador'); //se requiere el controlador del crud
 const preciosModelo = require('../models/precios');
 
+//variaciones de precios:
+router.get('/variaciones/:producto', (req, res) => {
+    preciosCtrl.getVariaciones(req.params.producto)
+        .then(variaciones => {
+            res.json(variaciones);
+        })
+        .catch(err => {
+            res.send(err);
+        });
+});
+
 router.get('/', (req, res) => {
     preciosCtrl.getPrecios()
         .then(precios => {
