@@ -30,6 +30,7 @@ preciosControlador.getVariaciones = function (producto) {
             })
     });
 }
+
 //get sin parametros:
 preciosControlador.getPrecios = function () {
     return new Promise((resolve, reject) => {
@@ -78,6 +79,31 @@ preciosControlador.getProducto = function (producto) {
             })
     });
 }
+
+
+preciosControlador.cambiarSubstring = function (substringOriginal, substringNuevo) {
+    return new Promise((resolve, reject) => {
+        supermercados.find({ descrip : {$regex: new RegExp(substringOriginal, "ig")} }).exec()
+        //supermercados.updateMany({ descrip: { $regex: new RegExp(substringEditar, "ig") } }, { $set: { descrip: nuevoValor } }).exec()
+            .then(data => {
+                for (registro in data) {
+                    let descripcion = data[registro].descrip;
+                    descripcion = descripcion.replace(substringOriginal, substringNuevo);
+                    supermercados.updateOne({ descrip: data[registro].descrip }, { $set: { descrip: descripcion } }).exec()
+                    .then(data => {
+                        resolve({ 'status': 200, 'message': 'put producto', 'data': data });
+                    })
+                    .catch(err => {
+                        reject({ 'status': 404, 'message': 'err:-' + err });
+                    })  
+                }
+            })
+            .catch(err => {
+                reject({ 'status': 404, 'message': 'err:-' + err });
+            })
+    });
+}
+
 
 //get con id
 /*
