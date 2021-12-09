@@ -1,46 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const supermercados = require('../models/precios');
-const preciosControlador = {};                     //creo un objeto que luego voy a exportar
-
-//aggregate:
-preciosControlador.getVariaciones = function (producto) {
-    return new Promise((resolve, reject) => {
-        supermercados.aggregate([
-            {
-                $match: {
-                    descrip: { $regex: new RegExp(producto, "ig") }
-                }
-            },
-            {
-                $group: {
-                    /*_id: "$descrip", precio: { $avg: "$precio" },
-                    variacion: { $avg: "$variacion" },
-                    cantidad: { $sum: 1 } */
-                    _id : {descripcion : "$descrip", precio: "$precio" },
-                    cantidad: { $sum: 1 }
-                }
-            }
-        ]).exec()
-            .then(data => {
-                resolve({ 'status': 200, 'message': 'get producto', 'data': data });
-            })
-            .catch(err => {
-                reject({ 'status': 404, 'message': 'err:-' + err });
-            })
-    });
-}
+const propiedades = require('../models/precios');
+const propiedadesControlador = {};                     //creo un objeto que luego voy a exportar
 
 //get sin parametros:
-preciosControlador.getPrecios = function () {
+propiedadesControlador.getPropiedades = function () {
     return new Promise((resolve, reject) => {
-        const totalRegistrosMostrar = 200;
-        supermercados.count().exec()
+        const totalRegistrosMostrar = 20;
+        propiedades.count().exec()
             .then(count => {
                 const totalSkip = count - totalRegistrosMostrar;
                 //supermercados.find({}).select("-_id").limit(300).exec()
                 //supermercados.find({}).exec()
-                supermercados.find().skip(totalSkip).exec()
+                propiedades.find().skip(totalSkip).exec()
                 .then(data => {
                     resolve({ 'status': 200, 'message': 'get last data', 'data': data });
                 })
@@ -55,7 +27,7 @@ preciosControlador.getPrecios = function () {
 }
 
 //get total de registros:
-preciosControlador.getTotalRegistros = function () {
+/* preciosControlador.getTotalRegistros = function () {
     return new Promise((resolve, reject) => {
         supermercados.count().exec()
             .then(count => {
@@ -66,9 +38,10 @@ preciosControlador.getTotalRegistros = function () {
             })
     });
 }
+ */
 
 //get de un solo prodcto:
-preciosControlador.getProducto = function (producto) {
+/* preciosControlador.getProducto = function (producto) {
     return new Promise((resolve, reject) => {
         supermercados.find({ descrip : {$regex: new RegExp(producto, "ig")} }).exec()
             .then(data => {
@@ -79,12 +52,11 @@ preciosControlador.getProducto = function (producto) {
             })
     });
 }
+ */
 
-
-preciosControlador.cambiarSubstring = function (substringOriginal, substringNuevo) {
+/* preciosControlador.cambiarSubstring = function (substringOriginal, substringNuevo) {
     return new Promise((resolve, reject) => {
         supermercados.find({ descrip : {$regex: new RegExp(substringOriginal, "ig")} }).exec()
-        //supermercados.updateMany({ descrip: { $regex: new RegExp(substringEditar, "ig") } }, { $set: { descrip: nuevoValor } }).exec()
             .then(data => {
                 for (registro in data) {
                     let descripcion = data[registro].descrip;
@@ -103,6 +75,7 @@ preciosControlador.cambiarSubstring = function (substringOriginal, substringNuev
             })
     });
 }
+ */
 
 
 //get con id

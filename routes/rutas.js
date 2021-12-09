@@ -1,11 +1,11 @@
 const express = require('express');         //aca se usa express no para crear un servidor sino para usar las
 //rutas del servidor
 const router = express.Router();
-const preciosCtrl = require('../controllers/controlador'); //se requiere el controlador del crud
-const preciosModelo = require('../models/precios');
+const propiedadesCtrl = require('../controllers/controlador'); //se requiere el controlador del crud
+//const preciosModelo = require('../models/precios');
 
 //cambiar substring
-router.put('/update/:stringOri/:stringNuevo', (req, res) => {
+/* router.put('/update/:stringOri/:stringNuevo', (req, res) => {
     preciosCtrl.cambiarSubstring(req.params.stringOri, req.params.stringNuevo)
         .then (data => {
             res.status(200).json(data);
@@ -14,10 +14,10 @@ router.put('/update/:stringOri/:stringNuevo', (req, res) => {
             res.status(500).json(err);
         });
     });
-
+ */
 
 //variaciones de precios:
-router.get('/variaciones/:producto', (req, res) => {
+/* router.get('/variaciones/:producto', (req, res) => {
     preciosCtrl.getVariaciones(req.params.producto)
         .then(variaciones => {
             res.json(variaciones);
@@ -26,9 +26,10 @@ router.get('/variaciones/:producto', (req, res) => {
             res.send(err);
         });
 });
+ */
 
 router.get('/', (req, res) => {
-    preciosCtrl.getPrecios()
+    propiedadesCtrl.getPropiedades()
         .then(precios => {
             res.json(precios.data);
         })
@@ -37,7 +38,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/:total', (req, res) => {
+/* router.get('/:total', (req, res) => {
     preciosCtrl.getTotalRegistros()
         .then(total => {
             res.json(total);
@@ -46,7 +47,9 @@ router.get('/:total', (req, res) => {
             res.json(err);
         })
 });
-router.get('/filtrar/:producto', (req, res) => {
+ */
+
+/* router.get('/filtrar/:producto', (req, res) => {
     preciosCtrl.getProducto(req.params.producto)
         .then(producto => {
             res.json(producto);
@@ -55,7 +58,7 @@ router.get('/filtrar/:producto', (req, res) => {
             res.json(err);
         })
 });
-
+ */
 //POST agregar un nuevo registro
 //router.post('/add-course', (req,res) => {
 //    const newCourse = new Course({
