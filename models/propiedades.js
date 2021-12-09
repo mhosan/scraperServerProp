@@ -10,4 +10,4 @@ const { Schema } = mongoose;
  */
 const propiedades = new Schema({})
 
-module.exports = mongoose.model(('propiedades', propiedades));
+module.exports = mongoose.model('propiedades', propiedades);

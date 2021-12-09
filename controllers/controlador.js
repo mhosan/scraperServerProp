@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const propiedades = require('../models/precios');
+const propiedades = require('../models/propiedades');
 const propiedadesControlador = {};                     //creo un objeto que luego voy a exportar
 
 //get sin parametros:
@@ -153,4 +153,4 @@ preciosControlador.deletePrecio = async (req, res) => {
 };
 */
 
-module.exports = preciosControlador;
+module.exports = propiedadesControlador;
