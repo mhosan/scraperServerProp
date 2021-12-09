@@ -3,8 +3,21 @@ const router = express.Router();
 const propiedades = require('../models/propiedades');
 const propiedadesControlador = {};                     //creo un objeto que luego voy a exportar
 
-//get sin parametros:
+//get sin parametros trae todos los registros:
 propiedadesControlador.getPropiedades = function () {
+    return new Promise((resolve, reject) => {
+        propiedades.find().exec()
+            .then(data => {
+                resolve({ 'status': 200, 'message': 'get last data', 'data': data });
+            })
+            .catch(err => {
+                reject({ 'status': 404, 'message': 'err:-' + err });
+            })
+    })
+}
+
+//get sin parametros pero trae algunos datos:
+/* propiedadesControlador.getPropiedades = function () {
     return new Promise((resolve, reject) => {
         const totalRegistrosMostrar = 20;
         propiedades.count().exec()
@@ -25,7 +38,7 @@ propiedadesControlador.getPropiedades = function () {
             })
     })
 }
-
+ */
 //get total de registros:
 /* preciosControlador.getTotalRegistros = function () {
     return new Promise((resolve, reject) => {
