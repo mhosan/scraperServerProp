@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/:total', (req, res) => {
+router.get('/total', (req, res) => {
     propiedadesCtrl.getTotalRegistros()
         .then(total => {
             res.json(total);
@@ -48,6 +48,15 @@ router.get('/:total', (req, res) => {
         })
 });
 
+router.get('/id/:idprop', (req, res) => {
+    propiedadesCtrl.getPropiedadXId(req.params.idprop)
+        .then(respuesta => {
+            res.json(respuesta);
+        })
+        .catch(err => {
+            res.json(err);
+        })
+});
 
 /* router.get('/filtrar/:producto', (req, res) => {
     preciosCtrl.getProducto(req.params.producto)

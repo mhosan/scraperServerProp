@@ -52,6 +52,20 @@ propiedadesControlador.getTotalRegistros = function () {
     });
 }
 
+//get de una propiedad por idPropiedad:
+propiedadesControlador.getPropiedadXId = function (idprop) {
+    const id = parseInt(idprop);
+    return new Promise((resolve, reject) => {
+        propiedades.findOne({"IdPropiedad " : id}).exec()
+            .then(data => {
+                resolve({ 'status': 200, 'message': 'get propiedad x id', 'IdPropiedad': id, 'data': data });
+            })
+            .catch(err => {
+                reject({ 'status': 404, 'message': 'err:-' + err });
+            })
+    });
+}
+
 
 //get de un solo prodcto:
 /* preciosControlador.getProducto = function (producto) {
@@ -95,9 +109,11 @@ propiedadesControlador.getTotalRegistros = function () {
 /*
 this.getSingle = function(id) {
         return new Promise((resolve, reject) => {
-            UserSchema.find({_id: id}).exec().then(data => {
+            UserSchema.find({_id: id}).exec()
+            .then(data => {
                 resolve({'status': 200, 'message':'get single data', 'data': data});
-            }).catch(err => {
+            })
+            .catch(err => {
                 reject({'status': 404, 'message':'err:-'+err});
             })
         })

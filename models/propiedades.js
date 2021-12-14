@@ -8,6 +8,8 @@ const { Schema } = mongoose;
     precio: { type: Number, required: true }
 });
  */
-const propiedades = new Schema({})
+const propiedades = new Schema({
+    "IdPropiedad " : { type: Number, required: false }
+})
 
 module.exports = mongoose.model('propiedades', propiedades);
