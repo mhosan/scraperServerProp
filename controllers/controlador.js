@@ -40,9 +40,9 @@ propiedadesControlador.getPropiedades = function () {
 }
  */
 //get total de registros:
-/* preciosControlador.getTotalRegistros = function () {
+propiedadesControlador.getTotalRegistros = function () {
     return new Promise((resolve, reject) => {
-        supermercados.count().exec()
+        propiedades.count().exec()
             .then(count => {
                 resolve({ 'status': 200, 'message': 'get total registros', 'data': count });
             })
@@ -51,7 +51,7 @@ propiedadesControlador.getPropiedades = function () {
             })
     });
 }
- */
+
 
 //get de un solo prodcto:
 /* preciosControlador.getProducto = function (producto) {
